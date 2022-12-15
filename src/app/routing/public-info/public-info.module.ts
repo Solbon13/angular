@@ -3,17 +3,23 @@ import { CommonModule } from '@angular/common';
 
 import { PublicInfoRoutingModule } from './public-info-routing.module';
 import { PublicInfoComponent } from './public-info.component';
-import { ListInfoComponent } from './list-info/list-info.component';
 
+
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { MyHeaderComponent } from './components/my-header/my-header.component';
 
 @NgModule({
   declarations: [
     PublicInfoComponent,
-    ListInfoComponent
+    MyHeaderComponent
   ],
   imports: [
     CommonModule,
-    PublicInfoRoutingModule
+    PublicInfoRoutingModule,
+
+    NzLayoutModule,
+    NzMenuModule,
   ]
 })
 export class PublicInfoModule { }

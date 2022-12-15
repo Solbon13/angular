@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListInfoComponent } from './list-info/list-info.component';
 import { PublicInfoComponent } from './public-info.component';
 
 const routes: Routes = [
   {
     path: 'login',
     component: PublicInfoComponent,
-    loadChildren: ()=>import('./login/login.module').then(m=>m.LoginModule)
+    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
   },
   {
     path: 'list',
-    component: ListInfoComponent
+    component: PublicInfoComponent,
+    loadChildren: () => import('./list-info/list-info.module').then(m => m.ListInfoModule)
   },
   {
+    // сделаю потом редирект на 1 лист
     path: '',
     component: PublicInfoComponent
   }

@@ -1,0 +1,12 @@
+<div class="header_logo">
+  <div class="logo"></div>
+  <div class="logo"></div>
+  <div><a routerLink="/private">Личный кабинет</a></div>
+</div>
+<nz-header>
+  <ul nz-menu nzTheme="dark" nzMode="horizontal">
+    <li nz-menu-item *ngFor="let item of menu">
+      <a [routerLink]="'/list'">{{item.name}}</a>
+    </li>
+  </ul>
+</nz-header>

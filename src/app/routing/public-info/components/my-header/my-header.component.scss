@@ -1,0 +1,22 @@
+.header_logo {
+    background: #fff;
+    // padding: 24px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+.logo {
+    width: 120px;
+    height: 31px;
+    background: rgba(15, 10, 10, 0.2);
+    margin: 16px 24px 16px 0;
+    float: left;
+  }
+
+  nz-header {
+    // position: fixed;
+    width: 100%;
+  }
+
+//   [nz-menu] {
+//     line-height: 64px;
+//   }
