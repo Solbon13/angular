@@ -1,0 +1,14 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Наименование</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzErrorTip="Введите наименование!">
+            <input nz-input type="text" formControlName="name" placeholder="Наименование" maxlength="200"/>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-control [nzOffset]="7" [nzSpan]="12">
+            <button nz-button nzType="primary" [disabled]="!validateForm.valid" [nzLoading]="uploading" >{{(id != 'NEW_DOC') ? 'Сохранить' : 'Создать'}}</button>
+            <button nz-button routerLink="/private/admin/organizations">Отменить</button>
+        </nz-form-control>
+    </nz-form-item>
+</form>

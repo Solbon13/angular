@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrivateInfoComponent implements OnInit {
 
+  isCollapsed = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  collapsed () {
+    this.isCollapsed = !this.isCollapsed
   }
 
 }

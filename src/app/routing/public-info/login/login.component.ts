@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { AuthService } from 'src/app/services/user/auth.service';
 import { StorageService } from 'src/app/services/user/storage.service';
 
@@ -20,12 +22,15 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private storageService: StorageService,
+    private router: Router,
+    private message: NzMessageService,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
       this.roles = this.storageService.getUser().roles;
+      this.router.navigateByUrl('/private')
     }
 
     this.validateForm = this.fb.group({
@@ -39,9 +44,7 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
 
     if (this.validateForm.valid) {
-      // this.store$.dispatch(login(this.validateForm.value))
       this.isLoad = true
-      console.log(this.validateForm.value['username'])
       this.authService.login(this.validateForm.value['username'], this.validateForm.value['password']).subscribe({
         next: data => {
           this.storageService.saveUser(data);
@@ -50,12 +53,16 @@ export class LoginComponent implements OnInit {
           this.isLoad = false;
           this.isLoggedIn = true;
           this.roles = this.storageService.getUser().roles;
-          this.reloadPage();
-        },
+          // this.reloadPage();
+      this.router.navigateByUrl('/private')
+    },
         error: err => {
+          console.log(err)
           this.errorMessage = err.error.message;
+          if (err.status == 0) this.errorMessage = "Ошибка соединения с сервером";
           this.isLoginFailed = true;
           this.isLoad = false;
+          this.message.create('error', this.errorMessage);
         }
       });
     } else {
@@ -69,8 +76,8 @@ export class LoginComponent implements OnInit {
 
   }
 
-  reloadPage(): void {
-    window.location.reload();
-  }
+  // reloadPage(): void {
+  //   window.location.reload();
+  // }
 
 }

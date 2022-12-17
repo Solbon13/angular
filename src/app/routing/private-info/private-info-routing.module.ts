@@ -6,22 +6,22 @@ const routes: Routes = [
   {
     path: 'register',
     component: PrivateInfoComponent,
-    loadChildren: ()=>import('./local-admin/local-admin.module').then(m=>m.LocalAdminModule)
+    loadChildren: ()=>import('./childs/local-admin/local-admin.module').then(m=>m.LocalAdminModule)
   },
   {
-    path: 'edit-org',
+    path: 'admin',
     component: PrivateInfoComponent,
-    loadChildren: ()=>import('./admin/admin.module').then(m=>m.AdminModule)
+    loadChildren: ()=>import('./childs/admin/admin.module').then(m=>m.AdminModule)
   },
   {
     path: 'edit-info',
     component: PrivateInfoComponent,
-    loadChildren: ()=>import('./moderator/moderator.module').then(m=>m.ModeratorModule)
+    loadChildren: ()=>import('./childs/moderator/moderator.module').then(m=>m.ModeratorModule)
   },
   {
     path: 'profile',
     component: PrivateInfoComponent,
-    loadChildren: ()=>import('./auth-user/auth-user.module').then(m=>m.AuthUserModule)
+    loadChildren: ()=>import('./childs/auth-user/auth-user.module').then(m=>m.AuthUserModule)
   },
   {
     path: '',

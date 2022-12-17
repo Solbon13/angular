@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EditOrgComponent } from './edit-org/edit-org.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: EditOrgComponent
+    path: 'organizations',
+    loadChildren: ()=>import('./organizations/organizations.module').then(m=>m.OrganizationsModule)
   }
 ];
 

@@ -1,0 +1,9 @@
+<nz-header>
+  <div class="app-header" nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+    <div nz-col nzSpan="14" class="header-trigger gutter-row" (click)="clickCollapsed()">
+      <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+    </div>
+    <div nz-col nzSpan="6" class="gutter-row" ><a [routerLink]="'/private/profile'">Профиль</a></div>
+    <div nz-col nzSpan="4" class="gutter-row" ><button nz-button (click)="logout()" nzDanger>Выход</button></div>
+  </div>
+</nz-header>

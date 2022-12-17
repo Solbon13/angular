@@ -1,0 +1,85 @@
+<div class="sidebar-logo">
+    <a routerLink="/" target="_blank">
+        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+        <h1>На общий сайт</h1>
+    </a>
+</div>
+<ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+    <li nz-submenu nzTitle="Информация" nzIcon="dashboard">
+        <ul>
+            <li nz-menu-item nzMatchRouter *ngFor="let item of departaments">
+                <a [routerLink]="'/private/info/' + item.id">{{item.name}}</a>
+            </li>
+        </ul>
+    </li>
+    <li nz-submenu nzTitle="Задачи" nzIcon="dashboard">
+        <ul>
+            <li nz-menu-item nzMatchRouter>
+                <a routerLink="/private/tasks/list/queue">0 в очереди</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <a routerLink="/private/tasks/list/work">0 в работе</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <a routerLink="/private/tasks/list/waits">0 в ожидании</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <a routerLink="/private/tasks/list/done">0 завершенных</a>
+            </li>
+        </ul>
+    </li>
+    <li nz-submenu nzTitle="АТХ" nzIcon="dashboard"  *ngIf="admin">
+        <ul>
+            <li nz-menu-item nzMatchRouter>
+                <a routerLink="/private/vehicles/list">Транспортное средство</a>
+            </li>
+        </ul>
+    </li>
+    <li nz-submenu nzTitle="Администрирование" nzIcon="form"  *ngIf="admin">
+        <ul>
+            <li nz-menu-item nzMatchRouter>
+                <a>Матрица доступа</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <a>Сертификаты</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <a>СУФД</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <a>1С</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <a>Почта</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <a>Контур</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <a>Банки</a>
+            </li>
+        </ul>
+    </li>
+    <li nz-submenu nzTitle="Справочники" nzIcon="form" *ngIf="admin">
+        <ul>
+            <li nz-menu-item nzMatchRouter>
+                <a routerLink="/private/admin/organizations">Организация</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <a routerLink="/private/departaments">Отделы</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <a routerLink="/private/users">Сотрудники</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <a routerLink="/private/tasks/type">Тип заданий</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <a routerLink="/private/vehicles/cars">Марки автомобиля</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <a routerLink="/private/menu">Меню сайта</a>
+            </li>
+        </ul>
+    </li>
+</ul>
