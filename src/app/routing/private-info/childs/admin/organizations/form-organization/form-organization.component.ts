@@ -15,8 +15,8 @@ export class FormOrganizationComponent implements OnInit {
   uploading = false
 
   submitForm(): void {
-          console.log(this.validateForm.value);
-          if (this.id === 'new')
+    console.log(this.validateForm.value);
+    if (this.id === 'new')
       this.organizationService.create(this.validateForm.value).subscribe({
         next: data => {
           console.log(data);
@@ -25,9 +25,15 @@ export class FormOrganizationComponent implements OnInit {
           console.log(err);
         }
       });
-    // else
-    //   this.store$.dispatch(updateOrg(this.validateForm.value))
-    // this.router.navigateByUrl('/backgrounds/organizations')
+    else
+      this.organizationService.update(this.validateForm.value, this.id).subscribe({
+        next: data => {
+          console.log(data);
+        },
+        error: err => {
+          console.log(err);
+        }
+      });
   }
 
   constructor(
@@ -35,25 +41,25 @@ export class FormOrganizationComponent implements OnInit {
     private activateRouter: ActivatedRoute,
     private organizationService: OrganizationService,
     private router: Router
-    ) {
+  ) {
     this.validateForm = this.fb.group({
       id: [0, [Validators.required]],
       name: ['', [Validators.required]],
     });
     this.activateRouter.params
-    .subscribe(params => {
-      if (params['ID'] != 'new')
-      this.organizationService.getOne(params['ID']).subscribe(
-        org => {
-          this.id=params['ID']
-          if (org)
-            this.validateForm = this.fb.group({
-              id: [org?.id, [Validators.required]],
-              name: [org?.name, [Validators.required]],
-            });
-        }
-      )
-    })
+      .subscribe(params => {
+        if (params['ID'] != 'new')
+          this.organizationService.getOne(params['ID']).subscribe(
+            org => {
+              this.id = params['ID']
+              if (org)
+                this.validateForm = this.fb.group({
+                  id: [org?.id, [Validators.required]],
+                  name: [org?.name, [Validators.required]],
+                });
+            }
+          )
+      })
   }
 
   ngOnInit(): void {

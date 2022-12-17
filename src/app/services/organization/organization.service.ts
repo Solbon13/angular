@@ -32,4 +32,13 @@ export class OrganizationService {
       );
   }
 
+  update(body: any, id: string): Observable<any> {
+    delete body.id
+    return this.http.put(
+      API_URL + `/${id}`,
+      body,
+      // httpOptions
+      );
+  }
+
 }
