@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { OrganizationService } from 'src/app/services/organization/organization.service';
-import { UserService } from 'src/app/services/user/user.service';
+import { GeneralService } from 'src/app/services/organization/general.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
+
+const ORGANIZATION='organization'
+
 
 @Component({
   selector: 'app-list-organizations',
@@ -10,25 +13,46 @@ import { UserService } from 'src/app/services/user/user.service';
 export class ListOrganizationsComponent implements OnInit {
 
   organizations$: any = []
-  // serverErrorOrganizations$ = this.store$.pipe(select(getServerErrorOrganizations))
-
-  content?: string;
-
-  constructor(
-    private organizationService: OrganizationService
-  ) { }
+  serverErrorOrganizations$?: string;
+  PATH = '/private/admin/organizations/'
   
+  constructor(
+    private organizationService: GeneralService,
+    private nzMessageService: NzMessageService
+  ) { }
+
   ngOnInit(): void {
-    this.organizationService.getList().subscribe({
+    this.getList()
+  }
+
+  getList() {
+    this.organizationService.getList(ORGANIZATION).subscribe({
       next: data => {
-        console.log(data)
         this.organizations$ = data;
       },
-      error: err => {console.log(err)
+      error: err => {
+        console.log(err.error)
         if (err.error) {
-          this.content = JSON.parse(err.error).message;
+          this.serverErrorOrganizations$ = err.error.message;
         } else {
-          this.content = "Error with status: " + err.status;
+          this.serverErrorOrganizations$ = "Ошибка со статусом: " + err.status;
+        }
+      }
+    });
+  }
+
+  confirm(id: string): void {
+    this.organizationService.delete(id, ORGANIZATION).subscribe({
+      next: data => {
+        this.organizations$ = data;
+        this.nzMessageService.info('Запись удалена');
+        this.getList()
+      },
+      error: err => {
+        if (err.error) {
+          this.serverErrorOrganizations$ = err.error.message;
+        } else {
+          this.serverErrorOrganizations$ = "Ошибка со статусом: " + err.status;
         }
       }
     });

@@ -19,7 +19,7 @@ export class ListInfoComponent implements OnInit {
       error: err => {
         console.log(err)
         if (err.error) {
-          this.content = JSON.parse(err.error).message;
+          this.content = err.error.message;
         } else {
           this.content = "Error with status: " + err.status;
         }

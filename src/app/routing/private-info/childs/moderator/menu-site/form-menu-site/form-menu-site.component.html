@@ -1,9 +1,9 @@
 <app-view-alert-error
-[serverError]="serverErrorOrganizations$"
+[serverError]="serverErrorMenu$"
 ></app-view-alert-error>
 <app-view-form
 [id]="id"
 [valueForm] = "valueForm"
-[currentModule]="ORGANIZATION"
+[currentModule]="MENU_SITE"
 (isError)="onIsError($event)"
 ></app-view-form>

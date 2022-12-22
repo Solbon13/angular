@@ -1,11 +1,11 @@
 <app-view-alert-error
-[serverError]="serverErrorOrganizations$"
+[serverError]="serverErrorPerson$"
 ></app-view-alert-error>
 <app-view-menu
 [path]="PATH"
 ></app-view-menu>
 <app-view-list
-[data] = "organizations$"
+[data]="persons$"
 [path]="PATH"
 (onDelete)="confirm($event)"
 ></app-view-list>

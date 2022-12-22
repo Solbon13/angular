@@ -3,17 +3,17 @@ import { ActivatedRoute } from '@angular/router';
 import { formValue } from 'src/app/routing/private-info/ui-view/interface/interface';
 import { GeneralService } from 'src/app/services/organization/general.service';
 
-const ORGANIZATION='organization'
+const MENU_SITE='menu'
 
 @Component({
-  selector: 'app-form-organization',
-  templateUrl: './form-organization.component.html',
-  styleUrls: ['./form-organization.component.scss']
+  selector: 'app-form-menu-site',
+  templateUrl: './form-menu-site.component.html',
+  styleUrls: ['./form-menu-site.component.scss']
 })
-export class FormOrganizationComponent implements OnInit {
+export class FormMenuSiteComponent implements OnInit {
   id: string = 'new'
-  serverErrorOrganizations$?: string
-  ORGANIZATION = ORGANIZATION
+  serverErrorMenu$?: string
+  MENU_SITE = MENU_SITE
   valueForm: formValue[] = [
     {
       key: 'id',
@@ -36,7 +36,7 @@ export class FormOrganizationComponent implements OnInit {
     this.activateRouter.params
       .subscribe(params => {
         if (params['ID'] != 'new')
-          this.organizationService.getOne(params['ID'], ORGANIZATION).subscribe(
+          this.organizationService.getOne(params['ID'], MENU_SITE).subscribe(
             org => {
               this.id = params['ID']
               if (org)
@@ -63,7 +63,8 @@ export class FormOrganizationComponent implements OnInit {
   }
 
   onIsError(err: string) {
-    this.serverErrorOrganizations$ = err
+    this.serverErrorMenu$ = err
   }
+
 
 }

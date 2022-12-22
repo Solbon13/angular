@@ -4,7 +4,7 @@ import { PrivateInfoComponent } from './private-info.component';
 
 const routes: Routes = [
   {
-    path: 'register',
+    path: 'local-admin',
     component: PrivateInfoComponent,
     loadChildren: ()=>import('./childs/local-admin/local-admin.module').then(m=>m.LocalAdminModule)
   },
@@ -14,7 +14,7 @@ const routes: Routes = [
     loadChildren: ()=>import('./childs/admin/admin.module').then(m=>m.AdminModule)
   },
   {
-    path: 'edit-info',
+    path: 'moderator',
     component: PrivateInfoComponent,
     loadChildren: ()=>import('./childs/moderator/moderator.module').then(m=>m.ModeratorModule)
   },

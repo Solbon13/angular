@@ -1,22 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ListOrganizationsRoutingModule } from './list-organizations-routing.module';
-import { ListOrganizationsComponent } from './list-organizations.component';
-
+import { ListDepartamentRoutingModule } from './list-departament-routing.module';
+import { ListDepartamentComponent } from './list-departament.component';
 import { UiViewModule } from 'src/app/routing/private-info/ui-view/ui-view.module';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 
 
 @NgModule({
   declarations: [
-    ListOrganizationsComponent
+    ListDepartamentComponent
   ],
   imports: [
     CommonModule,
-    ListOrganizationsRoutingModule,
+    ListDepartamentRoutingModule,
     NzMessageModule,
     UiViewModule
   ]
 })
-export class ListOrganizationsModule { }
+export class ListDepartamentsModule { }

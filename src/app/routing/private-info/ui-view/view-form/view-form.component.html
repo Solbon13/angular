@@ -1,0 +1,29 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitFormNew()">
+
+    <nz-form-item *ngFor="let section of valueForm">
+        <ng-container *ngIf="section.title">
+            <nz-form-label [nzSpan]="7" nzRequired="{{section.required}}">{{section.title}}</nz-form-label>
+            <nz-form-control [nzSpan]="12" nzHasFeedback>
+
+                <input nz-input *ngIf="section.type == 'text'" type="text" formControlName="{{section.key}}"
+                    placeholder="{{section.title}}" maxlength="200" />
+
+                <nz-select formControlName="{{section.key}}" id="{{section.key}}"
+                *ngIf="section.type == 'select'"
+                >
+                    <nz-option *ngFor="let o of section.list " [nzValue]="o.id" [nzLabel]="o.name">
+                    </nz-option>
+                </nz-select>
+
+            </nz-form-control>
+        </ng-container>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-control [nzOffset]="7" [nzSpan]="12">
+            <button nz-button nzType="primary" [disabled]="!validateForm.valid" [nzLoading]="uploading">{{(id !=
+                'NEW_DOC') ? 'Сохранить' : 'Создать'}}</button>
+            <button nz-button routerLink="/private/admin/organizations">Отменить</button>
+        </nz-form-control>
+    </nz-form-item>
+</form>

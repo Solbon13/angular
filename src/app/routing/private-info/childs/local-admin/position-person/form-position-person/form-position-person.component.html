@@ -1,9 +1,10 @@
 <app-view-alert-error
-[serverError]="serverErrorOrganizations$"
+[serverError]="serverErrorPositions$"
 ></app-view-alert-error>
 <app-view-form
 [id]="id"
 [valueForm] = "valueForm"
-[currentModule]="ORGANIZATION"
+[currentModule]="POSITION"
 (isError)="onIsError($event)"
 ></app-view-form>
+<!-- (onSubmit)="submitForm($event)" -->
