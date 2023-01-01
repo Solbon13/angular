@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { OrganizationService } from 'src/app/services/organization/organization.service';
 
 
@@ -13,25 +14,35 @@ export class FormOrganizationComponent implements OnInit {
   validateForm: FormGroup;
   id: string = 'new'
   uploading = false
+  serverErrorOrganizations$?: string
 
   submitForm(): void {
-    console.log(this.validateForm.value);
     if (this.id === 'new')
       this.organizationService.create(this.validateForm.value).subscribe({
         next: data => {
           console.log(data);
+          this.nzMessageService.info('Запись добавлена');
         },
         error: err => {
-          console.log(err);
+          if (err.error) {
+            this.serverErrorOrganizations$ = JSON.parse(err.error).message;
+          } else {
+            this.serverErrorOrganizations$ = "Ошибка со статусом: " + err.status;
+          }
         }
       });
     else
       this.organizationService.update(this.validateForm.value, this.id).subscribe({
         next: data => {
           console.log(data);
+          this.nzMessageService.info('Запись изменена');
         },
         error: err => {
-          console.log(err);
+          if (err.error) {
+            this.serverErrorOrganizations$ = JSON.parse(err.error).message;
+          } else {
+            this.serverErrorOrganizations$ = "Ошибка со статусом: " + err.status;
+          }
         }
       });
   }
@@ -40,7 +51,7 @@ export class FormOrganizationComponent implements OnInit {
     private fb: FormBuilder,
     private activateRouter: ActivatedRoute,
     private organizationService: OrganizationService,
-    private router: Router
+    private nzMessageService: NzMessageService
   ) {
     this.validateForm = this.fb.group({
       id: [0, [Validators.required]],

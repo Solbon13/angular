@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const API_URL = 'http://localhost:8080/api/organization';
+const API_URL = 'http://localhost:8080/api/departament';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class OrganizationService {
+export class DepartamentService {
 
   constructor(private http: HttpClient) { }
 

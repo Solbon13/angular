@@ -6,6 +6,8 @@ import { ListOrganizationsComponent } from './list-organizations.component';
 
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { NzAlertModule } from 'ng-zorro-antd/alert';
     CommonModule,
     ListOrganizationsRoutingModule,
     NzListModule,
-    NzAlertModule
+    NzAlertModule,
+    // NzPopconfirmModule,
+    NzMessageModule
   ]
 })
 export class ListOrganizationsModule { }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrganizationService } from 'src/app/services/organization/organization.service';
-import { UserService } from 'src/app/services/user/user.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
+
 
 @Component({
   selector: 'app-list-organizations',
@@ -12,23 +13,47 @@ export class ListOrganizationsComponent implements OnInit {
   organizations$: any = []
   // serverErrorOrganizations$ = this.store$.pipe(select(getServerErrorOrganizations))
 
-  content?: string;
+  serverErrorOrganizations$?: string;
 
   constructor(
-    private organizationService: OrganizationService
+    private organizationService: OrganizationService,
+    private nzMessageService: NzMessageService
   ) { }
-  
+
   ngOnInit(): void {
+    this.getList()
+  }
+
+  getList() {
     this.organizationService.getList().subscribe({
+      next: data => {
+        this.organizations$ = data;
+      },
+      error: err => {
+        console.log(err)
+        if (err.error) {
+          this.serverErrorOrganizations$ = JSON.parse(err.error).message;
+        } else {
+          this.serverErrorOrganizations$ = "Ошибка со статусом: " + err.status;
+        }
+      }
+    });
+  }
+
+  confirm(id: string): void {
+    this.organizationService.delete(id).subscribe({
       next: data => {
         console.log(data)
         this.organizations$ = data;
+        this.nzMessageService.info('Запись удалена');
+        this.getList()
       },
-      error: err => {console.log(err)
+      error: err => {
+        console.log(err)
         if (err.error) {
-          this.content = JSON.parse(err.error).message;
+          this.serverErrorOrganizations$ = JSON.parse(err.error).message;
         } else {
-          this.content = "Error with status: " + err.status;
+          this.serverErrorOrganizations$ = "Ошибка со статусом: " + err.status;
         }
       }
     });

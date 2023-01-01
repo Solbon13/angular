@@ -8,6 +8,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     NzFormModule,
     NzButtonModule,
     NzInputModule,
+    NzAlertModule,
+    NzMessageModule
   ]
 })
 export class FormOrganizationModule { }

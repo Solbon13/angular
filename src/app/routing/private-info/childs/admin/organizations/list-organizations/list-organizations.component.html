@@ -1,15 +1,20 @@
-<!-- <nz-alert 
-*ngIf="(serverErrorOrganizations$|async)"
-nzType="error" nzMessage="Ошибка" [nzDescription]="serverErrorOrganizations$|async" nzShowIcon>
-</nz-alert> -->
+<nz-alert 
+*ngIf="serverErrorOrganizations$"
+nzType="error" nzMessage="Ошибка" [nzDescription]="serverErrorOrganizations$" nzShowIcon>
+</nz-alert>
 <button nz-button routerLink="/private/admin/organizations/new">Добавить</button>
 <nz-list nzBordered>
     <nz-list-item *ngFor="let item of organizations$">
+      <ul nz-list-item-actions>
+        <nz-list-item-action>
+          <a
+          nz-popconfirm
+          nzPopconfirmTitle="Удалить?"
+          nzPopconfirmPlacement="bottom"
+          (nzOnConfirm)="confirm(item.id)"
+          >Удалить</a>
+        </nz-list-item-action>
+      </ul>
         <a [routerLink]="'/private/admin/organizations/' + item.id">{{ item.name }}</a>
     </nz-list-item>
 </nz-list>
-<div class="container">
-    <header class="jumbotron">
-      <p>{{ content }}</p>
-    </header>
-  </div>

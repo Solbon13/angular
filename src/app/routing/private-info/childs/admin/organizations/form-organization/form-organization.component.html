@@ -1,3 +1,7 @@
+<nz-alert 
+*ngIf="serverErrorOrganizations$"
+nzType="error" nzMessage="Ошибка" [nzDescription]="serverErrorOrganizations$" nzShowIcon>
+</nz-alert>
 <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
     <nz-form-item>
         <nz-form-label [nzSpan]="7" nzRequired>Наименование</nz-form-label>
