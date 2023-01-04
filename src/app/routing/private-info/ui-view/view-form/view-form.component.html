@@ -8,12 +8,17 @@
                 <input nz-input *ngIf="section.type == 'text'" type="text" formControlName="{{section.key}}"
                     placeholder="{{section.title}}" maxlength="200" />
 
-                <nz-select formControlName="{{section.key}}" id="{{section.key}}"
-                *ngIf="section.type == 'select'"
-                >
+                <nz-select formControlName="{{section.key}}" id="{{section.key}}" *ngIf="section.type == 'select'">
                     <nz-option *ngFor="let o of section.list " [nzValue]="o.id" [nzLabel]="o.name">
                     </nz-option>
                 </nz-select>
+
+                <input nz-input *ngIf="section.type == 'password'" type="password" formControlName="{{section.key}}"
+                    placeholder="{{section.title}}" maxlength="200" />
+
+                <nz-checkbox-group formControlName="{{section.key}}" *ngIf="section.type == 'check'"
+                    [(ngModel)]="section.list"></nz-checkbox-group>
+
 
             </nz-form-control>
         </ng-container>
@@ -23,7 +28,7 @@
         <nz-form-control [nzOffset]="7" [nzSpan]="12">
             <button nz-button nzType="primary" [disabled]="!validateForm.valid" [nzLoading]="uploading">{{(id !=
                 'NEW_DOC') ? 'Сохранить' : 'Создать'}}</button>
-            <button nz-button routerLink="/private/admin/organizations">Отменить</button>
+            <button nz-button [routerLink]="path">Отменить</button>
         </nz-form-control>
     </nz-form-item>
 </form>

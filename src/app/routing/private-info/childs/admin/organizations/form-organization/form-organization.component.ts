@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { formValue } from 'src/app/routing/private-info/ui-view/interface/interface';
 import { GeneralService } from 'src/app/services/organization/general.service';
+import { ORGANIZATION, PATH_ORGANIZATION } from '../const';
 
-const ORGANIZATION='organization'
 
 @Component({
   selector: 'app-form-organization',
@@ -14,6 +14,7 @@ export class FormOrganizationComponent implements OnInit {
   id: string = 'new'
   serverErrorOrganizations$?: string
   ORGANIZATION = ORGANIZATION
+  PATH = PATH_ORGANIZATION
   valueForm: formValue[] = [
     {
       key: 'id',

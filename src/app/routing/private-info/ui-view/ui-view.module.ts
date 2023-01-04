@@ -10,11 +10,16 @@ import { ViewAlertErrorComponent } from './view-alert-error/view-alert-error.com
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { RouterModule } from '@angular/router';
 import { ViewFormComponent } from './view-form/view-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { ViewTableComponent } from './view-table/view-table.component';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 
 
 @NgModule({
@@ -22,7 +27,8 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     ViewListComponent,
     ViewMenuComponent,
     ViewAlertErrorComponent,
-    ViewFormComponent
+    ViewFormComponent,
+    ViewTableComponent
   ],
   imports: [
     CommonModule,
@@ -35,13 +41,19 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     NzInputModule,
     NzAlertModule,
     NzSelectModule,
+    NzTableModule,
+    NzDropDownModule,
+    FormsModule,
+    NzIconModule,
+    NzCheckboxModule
   ],
   exports: [
     ViewListComponent,
     ViewMenuComponent,
     ViewAlertErrorComponent,
     NzMessageModule,
-    ViewFormComponent
+    ViewFormComponent,
+    ViewTableComponent
   ]
 })
 export class UiViewModule { }

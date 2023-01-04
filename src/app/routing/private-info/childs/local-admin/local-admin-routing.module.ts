@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RegisterComponent } from './register/register.component';
+import { DEPARTAMENT, PATH_DEPARTAMENT } from './departament/const';
 
 const routes: Routes = [
   {
@@ -15,10 +15,6 @@ const routes: Routes = [
     path: 'position',
     loadChildren: ()=>import('./position-person/position-person.module').then(m=>m.PositionPersonModule)
   },
-  {
-    path: '',
-    component: RegisterComponent
-  }
 ];
 
 @NgModule({

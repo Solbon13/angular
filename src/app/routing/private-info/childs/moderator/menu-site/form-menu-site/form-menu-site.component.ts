@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { formValue } from 'src/app/routing/private-info/ui-view/interface/interface';
 import { GeneralService } from 'src/app/services/organization/general.service';
+import { ORGANIZATION } from '../../../admin/organizations/const';
+import { MENU_SITE, PATH_MENU_SITE } from '../const';
 
-const MENU_SITE='menu'
 
 @Component({
   selector: 'app-form-menu-site',
@@ -14,6 +15,7 @@ export class FormMenuSiteComponent implements OnInit {
   id: string = 'new'
   serverErrorMenu$?: string
   MENU_SITE = MENU_SITE
+  PATH = PATH_MENU_SITE
   valueForm: formValue[] = [
     {
       key: 'id',
@@ -31,31 +33,73 @@ export class FormMenuSiteComponent implements OnInit {
 
   constructor(
     private activateRouter: ActivatedRoute,
-    private organizationService: GeneralService,
+    private generalService: GeneralService,
   ) {
     this.activateRouter.params
       .subscribe(params => {
-        if (params['ID'] != 'new')
-          this.organizationService.getOne(params['ID'], MENU_SITE).subscribe(
-            org => {
-              this.id = params['ID']
-              if (org)
-                this.valueForm = [
-                  {
-                    key: 'id',
-                    value: org?.id,
-                    required: true,
-                  },
-                  {
-                    key: 'name',
-                    value: org?.name,
-                    required: true,
-                    title: 'Наименование',
-                    type: 'text'
-                  },
-                ]
+        this.generalService.getList(ORGANIZATION).subscribe({
+          next: data => {
+            if (params['ID'] != 'new')
+              this.generalService.getOne(params['ID'], MENU_SITE).subscribe(
+                menuSite => {
+                  this.id = params['ID']
+                  if (menuSite)
+                    this.valueForm = [
+                      {
+                        key: 'id',
+                        value: menuSite?.id,
+                        required: true,
+                      },
+                      {
+                        key: 'org_id',
+                        value: menuSite.organization?.id,
+                        required: true,
+                        title: 'Организация',
+                        type: 'select',
+                        list: data
+                      },
+                      {
+                        key: 'name',
+                        value: menuSite?.name,
+                        required: true,
+                        title: 'Наименование',
+                        type: 'text'
+                      },
+                    ]
+                }
+              )
+              else
+              this.valueForm = [
+                {
+                  key: 'id',
+                  value: 0,
+                  required: false,
+                },
+                {
+                  key: 'org_id',
+                  value: '',
+                  required: true,
+                  title: 'Организация',
+                  type: 'select',
+                  list: data
+                },
+                {
+                  key: 'name',
+                  value: '',
+                  required: true,
+                  title: 'Наименование',
+                  type: 'text'
+                }
+              ]
+          },
+          error: err => {
+            if (err.error) {
+              this.serverErrorMenu$ = err.error.message;
+            } else {
+              this.serverErrorMenu$ = "Ошибка со статусом: " + err.status;
             }
-          )
+          }
+        })
       })
   }
 

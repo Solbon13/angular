@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { GeneralService } from 'src/app/services/organization/general.service';
+import { MENU_SITE, PATH_MENU_SITE } from '../const';
 
-const MENU_SITE='menu'
 
 @Component({
   selector: 'app-list-menu-site',
@@ -13,7 +13,7 @@ export class ListMenuSiteComponent implements OnInit {
 
   positionMenu$: any = []
   serverErrorMenu$?: string;
-  PATH = '/private/local-admin/menu/'
+  PATH = PATH_MENU_SITE
 
   constructor(
     private menuSiteService: GeneralService,

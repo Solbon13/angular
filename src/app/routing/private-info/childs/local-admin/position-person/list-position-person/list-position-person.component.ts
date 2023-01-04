@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { GeneralService } from 'src/app/services/organization/general.service';
-
-const POSITION_PERSON='position'
+import { PATH_POSITION_PERSON, POSITION_PERSON } from '../const';
 
 
 @Component({
@@ -14,7 +13,7 @@ export class ListPositionPersonComponent implements OnInit {
 
   positionPersons$: any = []
   serverErrorPositionPerson$?: string;
-  PATH = '/private/local-admin/position/'
+  PATH = PATH_POSITION_PERSON
 
   constructor(
     private positionPersonService: GeneralService,

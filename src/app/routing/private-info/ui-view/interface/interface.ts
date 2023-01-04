@@ -1,6 +1,6 @@
 export interface formValue {
     key: string,
-    value: string | number,
+    value: string | number | boolean,
     required: boolean,
     title?: string,
     type?: string

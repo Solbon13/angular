@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { formValue } from 'src/app/routing/private-info/ui-view/interface/interface';
 import { GeneralService } from 'src/app/services/organization/general.service';
-
-const POSITION='position'
+import { PATH_POSITION_PERSON, POSITION_PERSON } from '../const';
 
 @Component({
   selector: 'app-form-position-person',
@@ -13,7 +12,8 @@ const POSITION='position'
 export class FormPositionPersonComponent implements OnInit {
 
   id: string = 'new'
-  POSITION = POSITION
+  POSITION_PERSON = POSITION_PERSON
+  PATH = PATH_POSITION_PERSON
   serverErrorPositions$?: string
   valueForm: formValue[] = [
     {
@@ -37,7 +37,7 @@ export class FormPositionPersonComponent implements OnInit {
     this.activateRouter.params
       .subscribe(params => {
         if (params['ID'] != 'new')
-          this.positionService.getOne(params['ID'], POSITION).subscribe(
+          this.positionService.getOne(params['ID'], POSITION_PERSON).subscribe(
             org => {
               this.id = params['ID']
               if (org)

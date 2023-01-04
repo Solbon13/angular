@@ -15,6 +15,7 @@ export class ViewFormComponent implements OnInit, OnChanges {
   @Input() valueForm!: any[]
   @Input() currentModule!: string
   @Output() isError = new EventEmitter<string>();
+  @Input() path: string = ''
 
   constructor(
     private generalService: GeneralService,
@@ -22,11 +23,11 @@ export class ViewFormComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit(): void {
-    this.onChangesProp()
-
+    // this.onChangesProp()
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes['valueForm'])
     this.onChangesProp()
   }
 
@@ -34,22 +35,21 @@ export class ViewFormComponent implements OnInit, OnChanges {
     const group: any = {};
     this.valueForm.forEach(question => {
       group[question.key] = question.required
-        ? new FormControl(question.value || '', Validators.required)
-        : new FormControl(question.value || '');
+        ? new FormControl(question.value, Validators.required)
+        : new FormControl(question.value);
     });
     this.validateForm = new FormGroup(group);
-    console.log(this.validateForm.value)
-    console.log(this.valueForm)
-  }
-
-  submitForm(): void {
-    // this.onSubmit.emit(this.validateForm)
   }
 
   submitFormNew(): void {
     this.uploading = true
+    let requestData = this.validateForm.value
+    if (requestData.role) {
+      requestData.role = requestData.role.filter((v:any) => v.checked).map((v:any) => v.value)
+    }
+    console.log(this.validateForm.value)
     if (this.id === 'new')
-      this.generalService.create(this.validateForm.value, this.currentModule).subscribe({
+      this.generalService.create(requestData, this.currentModule).subscribe({
         next: data => {
           this.uploading = false
           this.nzMessageService.info('Запись добавлена');
@@ -66,7 +66,7 @@ export class ViewFormComponent implements OnInit, OnChanges {
         }
       });
     else
-      this.generalService.update(this.validateForm.value, this.id, this.currentModule).subscribe({
+      this.generalService.update(requestData, this.id, this.currentModule).subscribe({
         next: data => {
           this.uploading = false
           this.nzMessageService.info('Запись изменена');

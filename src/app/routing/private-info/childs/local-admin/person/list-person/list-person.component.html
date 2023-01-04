@@ -4,8 +4,15 @@
 <app-view-menu
 [path]="PATH"
 ></app-view-menu>
+отображается список пользователей
 <app-view-list
 [data]="persons$"
 [path]="PATH"
 (onDelete)="confirm($event)"
 ></app-view-list>
+<app-view-table
+[listOfColumns]="listOfColumns"
+[listOfData]="persons$"
+[path]="PATH"
+(onDelete)="confirm($event)"
+></app-view-table>

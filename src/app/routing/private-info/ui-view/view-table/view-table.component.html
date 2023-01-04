@@ -1,0 +1,49 @@
+<nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed">
+    <thead>
+        <tr>
+            <ng-container *ngFor="let column of listOfColumns">
+                <th 
+                *ngIf="!column.filterCustom"
+                [nzSortOrder]="column.sortOrder" [nzSortFn]="column.sortFn"
+                    [nzSortDirections]="column.sortDirections" [nzFilterMultiple]="column.filterMultiple"
+                    [nzFilters]="column.listOfFilter" [nzFilterFn]="column.filterFn">
+                    {{ column.title }}
+                </th>
+                <th 
+                *ngIf="column.filterCustom"
+                [nzSortOrder]="column.sortOrder" [nzSortFn]="column.sortFn"
+                    [nzSortDirections]="column.sortDirections" nzCustomFilter>
+                    {{ column.title }}
+                    <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0"
+                        [nzDropdownMenu]="menu">
+                        <span nz-icon nzType="search" (click)="onSearch(column.name)"></span>
+                    </nz-filter-trigger>
+                </th>
+            </ng-container>
+            <th nzRight>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of nzTable.data"  (click)="onClickRec(data.key)" [ngStyle]="{cursor: 'pointer'}">
+            <td *ngFor="let column of listOfColumns">{{ data[column.name] }}</td>
+            <td nzRight>
+                <a
+          nz-popconfirm
+          nzPopconfirmTitle="Удалить?"
+          nzPopconfirmPlacement="bottom"
+          >Удалить</a>
+          <!-- (nzOnConfirm)="confirm(item.id)" -->
+              </td>
+        </tr>
+    </tbody>
+</nz-table>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Текст для поиска" [(ngModel)]="searchValue" />
+            <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Найти</button>
+            <button nz-button nzSize="small" (click)="reset()">Сброс</button>
+        </div>
+    </div>
+</nz-dropdown-menu>

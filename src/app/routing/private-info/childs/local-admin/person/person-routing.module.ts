@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListPersonComponent } from './list-person/list-person.component'
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  // {
-  //   path: ':ID',
+  {
+    path: ':ID',
+    component: RegisterComponent
   //   loadChildren: ()=>import('./form-departament/form-departament.module').then(m=>m.FormDepartamentModule)
-  // },
+  },
   {
     path: '',
     component: ListPersonComponent

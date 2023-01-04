@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { formValue } from 'src/app/routing/private-info/ui-view/interface/interface';
 import { GeneralService } from 'src/app/services/organization/general.service';
-
-const DEPARTAMENT='departament'
-const ORGANIZATION='organization'
+import { ORGANIZATION } from '../../../admin/organizations/const';
+import { DEPARTAMENT, PATH_DEPARTAMENT } from '../const';
 
 
 @Component({
@@ -16,6 +15,7 @@ export class FormDepartamentComponent implements OnInit {
   NEW_DOC = 'new';
   id: string = this.NEW_DOC;
   DEPARTAMENT = DEPARTAMENT
+  PATH = PATH_DEPARTAMENT
   serverErrorOrganizations$: string | undefined
   valueForm: formValue[] = []
   

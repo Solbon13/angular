@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FormMenuSiteComponent } from './form-menu-site/form-menu-site.component';
 import { ListMenuSiteComponent } from './list-menu-site/list-menu-site.component'
 
 const routes: Routes = [
-      // {
-  //   path: ':ID',
-  //   loadChildren: ()=>import('./form-departament/form-departament.module').then(m=>m.FormDepartamentModule)
-  // },
+      {
+    path: ':ID',
+    component: FormMenuSiteComponent
+    // loadChildren: ()=>import('./form-departament/form-departament.module').then(m=>m.FormDepartamentModule)
+  },
   {
     path: '',
     component: ListMenuSiteComponent

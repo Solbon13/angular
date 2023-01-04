@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { GeneralService } from 'src/app/services/organization/general.service';
+import { DEPARTAMENT, PATH_DEPARTAMENT } from '../const';
 
-const DEPARTAMENT='departament'
 
 @Component({
   selector: 'app-list-departament',
@@ -12,7 +12,7 @@ const DEPARTAMENT='departament'
 export class ListDepartamentComponent implements OnInit {
   departaments$: any = []
   serverErrorDepartaments$?: string;
-  PATH: string = '/private/local-admin/departaments/'
+  PATH: string = PATH_DEPARTAMENT
 
   constructor(
     private departamentService: GeneralService,

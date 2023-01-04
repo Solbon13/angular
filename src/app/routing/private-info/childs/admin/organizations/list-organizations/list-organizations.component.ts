@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralService } from 'src/app/services/organization/general.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
-
-const ORGANIZATION='organization'
+import { ORGANIZATION, PATH_ORGANIZATION } from '../const';
 
 
 @Component({
@@ -14,7 +13,7 @@ export class ListOrganizationsComponent implements OnInit {
 
   organizations$: any = []
   serverErrorOrganizations$?: string;
-  PATH = '/private/admin/organizations/'
+  PATH = PATH_ORGANIZATION
   
   constructor(
     private organizationService: GeneralService,
