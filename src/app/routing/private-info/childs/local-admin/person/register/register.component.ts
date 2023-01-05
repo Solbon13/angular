@@ -68,21 +68,21 @@ export class RegisterComponent implements OnInit {
                                 key: 'fastName',
                                 value: user.person?.fastName,
                                 required: true,
-                                title: 'fastName',
+                                title: 'Фамилия',
                                 type: 'text'
                               },
                               {
                                 key: 'lastName',
                                 value: user.person?.lastName,
                                 required: true,
-                                title: 'lastName',
+                                title: 'Имя',
                                 type: 'text'
                               },
                               {
                                 key: 'middleName',
                                 value: user.person?.middleName,
                                 required: true,
-                                title: 'middleName',
+                                title: 'Отчество',
                                 type: 'text'
                               },
                               {
@@ -96,7 +96,7 @@ export class RegisterComponent implements OnInit {
                                 key: 'departament',
                                 value: user.person?.departament.id,
                                 required: true,
-                                title: 'departament',
+                                title: 'Отдел',
                                 type: 'select',
                                 list: departament
                               },
@@ -104,7 +104,7 @@ export class RegisterComponent implements OnInit {
                                 key: 'position',
                                 value: user.person?.position?.id,
                                 required: true,
-                                title: 'positionPerson',
+                                title: 'должность',
                                 type: 'select',
                                 list: positionPerson
                               },
