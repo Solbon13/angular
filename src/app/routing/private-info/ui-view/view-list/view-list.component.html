@@ -10,6 +10,6 @@
           >Удалить</a>
         </nz-list-item-action>
       </ul>
-        <a [routerLink]="path + item.id">{{ item.name }}</a>
+        <a [routerLink]="path + item.id">{{ item[field] }}</a>
     </nz-list-item>
 </nz-list>

@@ -20,6 +20,9 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { ViewFormTableComponent } from './view-form/view-form-table/view-form-table.component';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
 
 
 @NgModule({
@@ -28,7 +31,8 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
     ViewMenuComponent,
     ViewAlertErrorComponent,
     ViewFormComponent,
-    ViewTableComponent
+    ViewTableComponent,
+    ViewFormTableComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +49,9 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
     NzDropDownModule,
     FormsModule,
     NzIconModule,
-    NzCheckboxModule
+    NzCheckboxModule,
+    NzDatePickerModule,
+    NzUploadModule
   ],
   exports: [
     ViewListComponent,

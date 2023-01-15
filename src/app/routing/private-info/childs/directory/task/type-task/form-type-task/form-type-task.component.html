@@ -1,0 +1,10 @@
+<app-view-alert-error
+[serverError]="serverErrorOrganizations$"
+></app-view-alert-error>
+<app-view-form
+[id]="id"
+[valueForm] = "valueForm"
+[currentModule]="ORGANIZATION"
+(isError)="onIsError($event)"
+[path]="PATH"
+></app-view-form>

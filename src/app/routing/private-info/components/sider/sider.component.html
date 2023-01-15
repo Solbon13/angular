@@ -7,7 +7,7 @@
 <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
     <li nz-submenu nzTitle="Информация" nzIcon="dashboard">
         <ul>
-            <li nz-menu-item nzMatchRouter *ngFor="let item of departaments">
+            <li nz-menu-item nzMatchRouter *ngFor="let item of departaments$">
                 <a [routerLink]="'/private/info/' + item.id">{{item.name}}</a>
             </li>
         </ul>
@@ -15,7 +15,8 @@
     <li nz-submenu nzTitle="Задачи" nzIcon="dashboard">
         <ul>
             <li nz-menu-item nzMatchRouter>
-                <a routerLink="/private/tasks/list/queue">0 в очереди</a>
+                <a routerLink="/private/tasks">0 в очереди</a>
+                <!-- <a routerLink="/private/tasks/list/queue">0 в очереди</a> -->
             </li>
             <li nz-menu-item nzMatchRouter>
                 <a routerLink="/private/tasks/list/work">0 в работе</a>
@@ -28,14 +29,14 @@
             </li>
         </ul>
     </li>
-    <li nz-submenu nzTitle="АТХ" nzIcon="dashboard"  *ngIf="admin">
+    <!-- <li nz-submenu nzTitle="АТХ" nzIcon="dashboard"  *ngIf="admin">
         <ul>
             <li nz-menu-item nzMatchRouter>
                 <a routerLink="/private/vehicles/list">Транспортное средство</a>
             </li>
         </ul>
-    </li>
-    <li nz-submenu nzTitle="Администрирование" nzIcon="form"  *ngIf="admin">
+    </li> -->
+    <!-- <li nz-submenu nzTitle="Администрирование" nzIcon="form"  *ngIf="admin">
         <ul>
             <li nz-menu-item nzMatchRouter>
                 <a>Матрица доступа</a>
@@ -59,11 +60,14 @@
                 <a>Банки</a>
             </li>
         </ul>
-    </li>
+    </li> -->
     <li nz-submenu nzTitle="Справочники" nzIcon="form" *ngIf="admin">
         <ul>
             <li nz-menu-item nzMatchRouter>
                 <a routerLink="/private/admin/organizations">Организация</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <a routerLink="/private/moderator/menu">Меню сайта</a>
             </li>
             <li nz-menu-item nzMatchRouter>
                 <a routerLink="/private/local-admin/departaments">Отделы</a>
@@ -75,13 +79,13 @@
                 <a routerLink="/private/local-admin/person">Сотрудники</a>
             </li>
             <li nz-menu-item nzMatchRouter>
-                <a routerLink="/private/tasks/type">Тип заданий</a>
+                <a routerLink="/private/directory/task/type">Тип заданий</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <a routerLink="/private/directory/task/status">Статус заданий</a>
             </li>
             <li nz-menu-item nzMatchRouter>
                 <a routerLink="/private/vehicles/cars">Марки автомобиля</a>
-            </li>
-            <li nz-menu-item nzMatchRouter>
-                <a routerLink="/private/moderator/menu">Меню сайта</a>
             </li>
         </ul>
     </li>

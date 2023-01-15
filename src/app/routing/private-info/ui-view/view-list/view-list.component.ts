@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class ViewListComponent implements OnInit {
   @Input() data: any[] = []
   @Input() path: string = ''
+  @Input() field: string = ''
   @Output() onDelete =new EventEmitter<string>();
 
   constructor() { }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { formValue } from 'src/app/routing/private-info/ui-view/interface/interface';
+import { formValue } from 'src/app/routing/private-info/ui-view/view-form/interface/interface';
 import { GeneralService } from 'src/app/services/organization/general.service';
 import { AuthService } from 'src/app/services/user/auth.service';
 import { DEPARTAMENT } from '../../departament/const';
@@ -65,8 +65,8 @@ export class RegisterComponent implements OnInit {
                                 type: 'text'
                               },
                               {
-                                key: 'fastName',
-                                value: user.person?.fastName,
+                                key: 'firstName',
+                                value: user.person?.firstName,
                                 required: true,
                                 title: 'Фамилия',
                                 type: 'text'
@@ -93,20 +93,22 @@ export class RegisterComponent implements OnInit {
                                 type: 'password'
                               },
                               {
-                                key: 'departament',
+                                key: 'departament_id',
                                 value: user.person?.departament.id,
                                 required: true,
                                 title: 'Отдел',
                                 type: 'select',
-                                list: departament
+                        listField: 'name',
+                        list: departament
                               },
                               {
-                                key: 'position',
+                                key: 'position_id',
                                 value: user.person?.position?.id,
                                 required: true,
                                 title: 'должность',
                                 type: 'select',
-                                list: positionPerson
+                        listField: 'name',
+                        list: positionPerson
                               },
                               {
                                 key: 'role',
@@ -141,16 +143,16 @@ export class RegisterComponent implements OnInit {
                         },
                         {
                           key: 'email',
-                          value: '',
+                          value: 'test@test.org',
                           required: true,
                           title: 'Email',
                           type: 'text'
                         },
                         {
-                          key: 'fastName',
+                          key: 'firstName',
                           value: '',
                           required: true,
-                          title: 'fastName',
+                          title: 'firstName',
                           type: 'text'
                         },
                         {
@@ -180,7 +182,8 @@ export class RegisterComponent implements OnInit {
                           required: true,
                           title: 'departament',
                           type: 'select',
-                          list: departament
+                        listField: 'name',
+                        list: departament
                         },
                         {
                           key: 'position_id',
@@ -188,7 +191,8 @@ export class RegisterComponent implements OnInit {
                           required: true,
                           title: 'positionPerson',
                           type: 'select',
-                          list: positionPerson
+                        listField: 'name',
+                        list: positionPerson
                         },
                         {
                           key: 'role',

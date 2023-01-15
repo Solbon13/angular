@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { PersonRoutingModule } from './person-routing.module';
 import { ListPersonComponent } from './list-person/list-person.component';
-import { FormPersonComponent } from './form-person/form-person.component';
 import { UiViewModule } from '../../../ui-view/ui-view.module';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { RegisterComponent } from './register/register.component';
@@ -12,7 +11,6 @@ import { RegisterComponent } from './register/register.component';
 @NgModule({
   declarations: [
     ListPersonComponent,
-    FormPersonComponent,
     RegisterComponent
   ],
   imports: [

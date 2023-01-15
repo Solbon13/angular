@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { ListInfoRoutingModule } from './list-info-routing.module';
 import { ListInfoComponent } from './list-info.component';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 
-import { NzListModule } from 'ng-zorro-antd/list';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { NzListModule } from 'ng-zorro-antd/list';
   imports: [
     CommonModule,
     ListInfoRoutingModule,
-    NzListModule
+    NzCardModule,
+    NzGridModule
   ]
 })
 export class ListInfoModule { }

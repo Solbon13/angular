@@ -102,7 +102,7 @@ export class ListPersonComponent implements OnInit {
         console.log(data)
         this.persons$ = data.map((v: any) => ({
           key: v.id,
-          name: v.person ? v.person?.fastName + ' ' + v.person?.lastName + ' ' + v.person?.middleName : 'Пусто',
+          name: v.person ? v.person?.firstName + ' ' + v.person?.lastName + ' ' + v.person?.middleName : 'Пусто',
           username: v.username,
           email: v.email,
           departament: v.person?.departament ? v.person.departament?.name : 'Не определено',

@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./view-table.component.scss']
 })
 export class ViewTableComponent implements OnInit, OnChanges {
-  fieldSearch = ''
 
   constructor(
     private router: Router
@@ -20,13 +19,14 @@ export class ViewTableComponent implements OnInit, OnChanges {
   ngOnInit(): void {
   }
 
-  searchValue = '';
-  visible = false;
   @Input() listOfData: any[] = [];
-  listOfDisplayData = [...this.listOfData];
   @Input() listOfColumns: any[] = [];
   @Input() path: string = ''
-  @Output() onDelete =new EventEmitter<string>();
+  @Output() onDelete = new EventEmitter<string>();
+  fieldSearch = ''
+  listOfDisplayData = [...this.listOfData];
+  searchValue = '';
+  visible = false;
 
   confirm(id: string): void {
     this.onDelete.emit(id)
@@ -42,12 +42,11 @@ export class ViewTableComponent implements OnInit, OnChanges {
       this.listOfDisplayData = this.listOfData.filter((item: any) => item[this.fieldSearch].indexOf(this.searchValue) !== -1);
   }
 
-  onSearch(fieldSearch:string) {
+  onSearch(fieldSearch: string) {
     this.fieldSearch = fieldSearch
   }
 
   onClickRec(id: string) {
-    console.log(id)
     this.router.navigate([this.path + id]);
   }
 }

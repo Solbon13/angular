@@ -1,32 +1,53 @@
-<form nz-form [formGroup]="validateForm" (ngSubmit)="submitFormNew()">
+<form nz-form [formGroup]="validateForm">
 
     <nz-form-item *ngFor="let section of valueForm">
         <ng-container *ngIf="section.title">
-            <nz-form-label [nzSpan]="7" nzRequired="{{section.required}}">{{section.title}}</nz-form-label>
-            <nz-form-control [nzSpan]="12" nzHasFeedback>
+            <nz-form-label *ngIf="!(section.type == 'table' || section.type == 'file')" [nzSpan]="7" nzRequired="{{section.required}}">
+                {{section.title}}</nz-form-label>
+            <nz-form-control *ngIf="!(section.type == 'table' || section.type == 'file')" [nzSpan]="12" nzHasFeedback>
 
                 <input nz-input *ngIf="section.type == 'text'" type="text" formControlName="{{section.key}}"
                     placeholder="{{section.title}}" maxlength="200" />
 
-                <nz-select formControlName="{{section.key}}" id="{{section.key}}" *ngIf="section.type == 'select'">
-                    <nz-option *ngFor="let o of section.list " [nzValue]="o.id" [nzLabel]="o.name">
+                <nz-select *ngIf="section.type == 'select'" formControlName="{{section.key}}" id="{{section.key}}">
+                    <nz-option *ngFor="let o of section.list " [nzValue]="o.id" [nzLabel]="o[section.listField]">
                     </nz-option>
                 </nz-select>
 
                 <input nz-input *ngIf="section.type == 'password'" type="password" formControlName="{{section.key}}"
                     placeholder="{{section.title}}" maxlength="200" />
 
-                <nz-checkbox-group formControlName="{{section.key}}" *ngIf="section.type == 'check'"
+                <nz-checkbox-group *ngIf="section.type == 'check'" formControlName="{{section.key}}"
                     [(ngModel)]="section.list"></nz-checkbox-group>
 
+                <nz-textarea-count *ngIf="section.type == 'textarea'" [nzMaxCharacterCount]="2000">
+                    <textarea formControlName="{{section.key}}" nz-input rows="2"
+                        placeholder="write any thing"></textarea>
+                </nz-textarea-count>
 
+                <nz-date-picker *ngIf="section.type == 'date'" formControlName="{{section.key}}"></nz-date-picker>
+
+            </nz-form-control>
+            <nz-form-control *ngIf="(section.type == 'table' || section.type == 'file')">
+                <app-view-form-table  *ngIf="section.type == 'table'"
+                [listOfData]="section.list"
+                    (addRec)="addRec($event)" (delRec)="delRec($event)" [field]="section.key" [listSelect]="section.listSelect">
+                </app-view-form-table>
+                <nz-upload *ngIf="section.type == 'file'"
+                [(nzFileList)]="section.list" [nzBeforeUpload]="beforeUpload"
+                nzListType="picture">
+                    <button nz-button>
+                        <span nz-icon nzType="upload"></span>
+                        Прикрепить файл
+                    </button>
+                </nz-upload>
             </nz-form-control>
         </ng-container>
     </nz-form-item>
 
     <nz-form-item>
         <nz-form-control [nzOffset]="7" [nzSpan]="12">
-            <button nz-button nzType="primary" [disabled]="!validateForm.valid" [nzLoading]="uploading">{{(id !=
+            <button nz-button nzType="primary" [disabled]="!validateForm.valid" [nzLoading]="uploading"  (click)="submitFormNew()">{{(id !=
                 'NEW_DOC') ? 'Сохранить' : 'Создать'}}</button>
             <button nz-button [routerLink]="path">Отменить</button>
         </nz-form-control>

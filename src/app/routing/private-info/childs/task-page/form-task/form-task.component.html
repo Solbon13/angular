@@ -1,0 +1,10 @@
+<app-view-alert-error
+[serverError]="serverError$"
+></app-view-alert-error>
+<app-view-form
+[id]="id"
+[valueForm] = "valueForm"
+[currentModule]="currentModule"
+(isError)="onIsError($event)"
+[path]="PATH"
+></app-view-form>

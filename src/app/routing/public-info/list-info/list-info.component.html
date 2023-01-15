@@ -1,16 +1,19 @@
-<div class="container">
-  <header class="jumbotron">
-    <p>{{ content }}</p>
-  </header>
+<div style="background: #ECECEC;padding:30px;">
+  <div nz-row [nzGutter]="8">
+    <div nz-col [nzSpan]="8">
+      <nz-card nzTitle="Card title">
+        <p>Card content</p>
+      </nz-card>
+    </div>
+    <div nz-col [nzSpan]="8">
+      <nz-card nzTitle="Card title">
+        <p>Card content</p>
+      </nz-card>
+    </div>
+    <div nz-col [nzSpan]="8">
+      <nz-card nzTitle="Card title">
+        <p>Card content</p>
+      </nz-card>
+    </div>
+  </div>
 </div>
-<nz-list nzItemLayout="horizontal">
-  <nz-list nzItemLayout="horizontal">
-    <nz-list-item>
-      <nz-list-item-meta-title>
-        <a href="https://ng.ant.design">item.titl</a>
-      </nz-list-item-meta-title>
-    </nz-list-item>
-    descriptions
-  </nz-list>
-  <nz-list-empty></nz-list-empty>
-</nz-list>

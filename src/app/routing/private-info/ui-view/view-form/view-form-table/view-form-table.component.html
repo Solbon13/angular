@@ -1,0 +1,35 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired="{{true}}">Добавить исполнителя</nz-form-label>
+        <nz-form-control nzErrorTip="Введите исполнителя!" [nzSpan]="7">
+            <nz-select formControlName="username">
+                <nz-option *ngFor="let data of listSelect" [nzValue]="data"
+                    [nzLabel]="data.firstName + ' ' + data.lastName + ' ' + data.middleName">
+                </nz-option>
+            </nz-select>
+        </nz-form-control>
+        <nz-form-control [nzSpan]="7">
+            <button nz-button nzType="primary" [disabled]="!validateForm.valid">Добавить</button>
+        </nz-form-control>
+    </nz-form-item>
+</form>
+
+<nz-table #basicTable [nzData]="listOfData">
+    <thead>
+        <tr>
+            <th>Исполнитель</th>
+            <th>Статус</th>
+            <th>Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of basicTable.data">
+            <td>{{ data.person.firstName + ' ' + data.person.lastName + ' ' + data.person.middleName }}</td>
+            <td>{{ data.statusTask.name }}</td>
+            <td>
+                <a nz-popconfirm nzPopconfirmTitle="Удалить?" nzPopconfirmPlacement="bottom"
+                    (nzOnConfirm)="confirm(data.id)">Удалить</a>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>

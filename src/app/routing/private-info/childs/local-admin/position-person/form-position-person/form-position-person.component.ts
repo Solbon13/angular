@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { formValue } from 'src/app/routing/private-info/ui-view/interface/interface';
+import { formValue } from 'src/app/routing/private-info/ui-view/view-form/interface/interface';
 import { GeneralService } from 'src/app/services/organization/general.service';
 import { PATH_POSITION_PERSON, POSITION_PERSON } from '../const';
 

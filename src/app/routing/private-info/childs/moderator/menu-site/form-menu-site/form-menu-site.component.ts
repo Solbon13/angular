@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { formValue } from 'src/app/routing/private-info/ui-view/interface/interface';
+import { formValue } from 'src/app/routing/private-info/ui-view/view-form/interface/interface';
 import { GeneralService } from 'src/app/services/organization/general.service';
 import { ORGANIZATION } from '../../../admin/organizations/const';
 import { MENU_SITE, PATH_MENU_SITE } from '../const';
@@ -56,6 +56,7 @@ export class FormMenuSiteComponent implements OnInit {
                         required: true,
                         title: 'Организация',
                         type: 'select',
+                        listField: 'name',
                         list: data
                       },
                       {
@@ -81,6 +82,7 @@ export class FormMenuSiteComponent implements OnInit {
                   required: true,
                   title: 'Организация',
                   type: 'select',
+                  listField: 'name',
                   list: data
                 },
                 {
